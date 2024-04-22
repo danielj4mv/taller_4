@@ -30,6 +30,6 @@
    http://ip_de_la_mv:8089/
    ```
 6. **Crear una nueva prueba de carga con los siguientes valores:**
-   ![prueba](/images/prueba.png)
+   ![prueba](/images/res.png)
   Al presionar START comenzará la prueba de carga la cual podrá obsevar desde la interfaz de locust
 
