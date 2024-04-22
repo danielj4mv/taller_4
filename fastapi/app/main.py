@@ -14,5 +14,9 @@ modelo = load('app/pipeline.joblib')
 
 
 @app.post("/predict")
-async def predict(request: PredictionRequest):
-    return [modelo.predict(pd.DataFrame([request.model_dump()]))]
+def predict(request: PredictionRequest):
+    diccionario=request.model_dump()
+    print(diccionario)
+    dataf=pd.DataFrame([diccionario])
+    print(list(modelo.predict(dataf)),type(modelo.predict(dataf)))
+    return modelo.predict(dataf).tolist()
