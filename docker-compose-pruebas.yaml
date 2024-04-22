@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+      
+  locustmaster:
+    image: locustio/locust
+    container_name: locustmaster
+    build: ./locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - ./locust:/locust
+    command: -f /locust/locustfile.py --master -H http://locustmaster:8089  # Ajusta la ruta del archivo aquí
+    networks:
+      - network1
+  
+  
+  locustworker:
+    image: locustio/locust
+    container_name: locustworker
+    build: ./locust
+    volumes:
+      - ./locust:/locust
+    command: -f /locust/locustfile.py --worker --master-host locustmaster  # Ajusta la ruta del archivo aquí
+    networks:
+      - network1
+      
+      
+networks:
+  network1:
+    name: p2_default
+    external: true
